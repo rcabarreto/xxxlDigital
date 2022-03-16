@@ -9,7 +9,26 @@
   vertical-align: top;
 }
 
-.price .currency {
-  font-size: 1.2em;
-  padding-left: 5px;
+.regular {
+  margin-top: 40px;
+}
+
+.oldPrice {
+  text-decoration: line-through;
+  color: rgb(170, 170, 170);
+}
+
+.oldPrice .integer {
+  font-size: 1em;
+  font-weight: bold;
+  line-height: 1.2em;
+}
+
+.oldPrice .decimal {
+  font-size: 0.7em;
+  vertical-align: top;
+}
+
+.salePrice {
+  color: rgb(235, 49, 49);
 }

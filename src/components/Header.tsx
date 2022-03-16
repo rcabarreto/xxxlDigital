@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-import HeaderLogo from "../assets/logo.png";
+import Logo from "../assets/logo.png";
 
 const Header: React.FC = () => {
   return (
@@ -12,12 +12,7 @@ const Header: React.FC = () => {
             to="/"
             className="d-flex align-items-center mb-2 mb-lg-0 text-dark text-decoration-none"
           >
-            <img
-              src={HeaderLogo}
-              alt="Logo"
-              height={40}
-              className="header-logo"
-            />
+            <img src={Logo} alt="Logo" height={40} className="header-logo" />
           </Link>
 
           <ul className="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">

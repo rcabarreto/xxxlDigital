@@ -5,6 +5,6 @@ export type ProductType = {
   image: string;
   price: number;
   priceSale: number;
-  eyecatcher: string;
+  eyecatcher: string | null;
   url: string;
 };

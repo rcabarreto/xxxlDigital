@@ -1,24 +1,21 @@
-import axios from "axios";
+import axios from 'axios';
+import { ProductType } from '../types';
 
 class Api {
   getApiUrl(endPoint: string) {
-    return `https://localhost:3000/${endPoint}`;
+    return `http://localhost:3000/api/v1${endPoint}`;
   }
 
-  getData(endPoint: string) {
+  async getData(endPoint: string) {
     return axios
       .get(this.getApiUrl(endPoint))
       .then((response) => response.data)
-      .catch((error) => {
-        if (error.response.status === 404) {
-          throw new Error(`${error.config.url} not found`);
-        }
-        throw error;
-      });
+      .then((responseJson) => responseJson.payload)
+      .catch((error) => Promise.reject(error.response));
   }
 
-  async loadSomething(param: string) {
-    return this.getData(`${param}`);
+  async loadProducts(): Promise<ProductType[]> {
+    return this.getData('/products');
   }
 }
 

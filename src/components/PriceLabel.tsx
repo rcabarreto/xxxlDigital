@@ -22,13 +22,11 @@ const PriceComponent: React.FC<Pick<ProductType, 'price' | 'priceSale' | 'eyecat
   priceSale,
   eyecatcher,
 }) => {
-  if (!eyecatcher) return <PriceLabel price={price} />;
-
   return (
-    <>
-      <PriceLabel price={price} type={'oldPrice'} />
-      <PriceLabel price={price} type={'salePrice'} />
-    </>
+    <div className="d-flex flex-column justify-content-end align-items-start" style={{ height: '60px' }}>
+      <PriceLabel price={price} type={!eyecatcher ? 'regular' : 'oldPrice'} />
+      {!!eyecatcher && <PriceLabel price={priceSale} type={'salePrice'} />}
+    </div>
   );
 };
 

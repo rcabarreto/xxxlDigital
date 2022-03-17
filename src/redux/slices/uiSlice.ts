@@ -1,16 +1,16 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { RootState } from "../store";
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { RootState } from '../store';
 
 export interface UiState {
   status: string;
 }
 
 const initialState: UiState = {
-  status: "idle",
+  status: 'idle',
 };
 
 export const uiSlice = createSlice({
-  name: "ui",
+  name: 'ui',
   initialState,
   reducers: {
     setLoading(state, action: PayloadAction<string>) {
@@ -19,17 +19,16 @@ export const uiSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
-      .addCase("user/fetchProductList/pending", (state) => {
-        state.status = "loading";
+      .addCase('product/fetchProducts/pending', (state) => {
+        state.status = 'loading';
       })
-      .addCase("user/fetchProductList/fulfilled", (state) => {
-        state.status = "idle";
+      .addCase('product/fetchProducts/fulfilled', (state) => {
+        state.status = 'idle';
       });
   },
 });
 
-export const isLoadingData = (state: RootState) =>
-  state.ui.status === "loading";
+export const isLoadingData = (state: RootState) => state.ui.status === 'loading';
 
 export const { setLoading } = uiSlice.actions;
 export default uiSlice.reducer;

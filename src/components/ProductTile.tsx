@@ -9,7 +9,7 @@ import SaleRibbon from '../assets/sale-red-ribbon.png';
 const ProductTile: React.FC<ProductType> = ({ id, name, brand, image, eyecatcher, price, priceSale }) => {
   return (
     <div className="col">
-      <div className="card" style={{ width: '18rem', height: '100%' }}>
+      <div className="card" style={{ height: '100%' }}>
         <ProductImage id={id} image={image} eyecatcher={eyecatcher} />
         <div className="card-body">
           <h5 className="card-title">{name}</h5>

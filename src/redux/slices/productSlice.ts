@@ -11,7 +11,7 @@ const initialState: companyState = {
   list: [],
 };
 
-export const fetchProducts = createAsyncThunk('company/fetchProducts', async () => {
+export const fetchProducts = createAsyncThunk('product/fetchProducts', async () => {
   const api = new Api();
   const response: ProductType[] = await api.loadProducts();
   return response;

@@ -39,3 +39,20 @@
   white-space: nowrap;
   max-width: -webkit-fill-available;
 }
+
+.page-link {
+  color: rgb(235, 49, 49);
+}
+
+.page-link:hover {
+  color: rgb(235, 49, 49);
+}
+
+.page-item .page-link {
+  color: rgb(235, 49, 49);
+}
+
+.page-item.active .page-link {
+  background-color: rgb(235, 49, 49);
+  border-color: rgb(235, 49, 49);
+}

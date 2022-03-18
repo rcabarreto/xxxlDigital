@@ -2,7 +2,7 @@ import { createAsyncThunk, createSlice, createSelector } from '@reduxjs/toolkit'
 import Api from '../../services/api';
 import { RootState } from '../store';
 import { ProductType } from '../../types';
-
+import { PRODUCTS_PER_PAGE } from '../../constants';
 export interface companyState {
   list: ProductType[];
 }
@@ -43,9 +43,9 @@ const getSorter = (
 
 export const selectProductsFromState = (state: RootState) => state.product.list;
 
-export const selectSortedProducts = createSelector(selectProductsFromState, getSorter, (productList, sorter) => {
-  const paginationFrom = sorter.pageNum * 12;
-  const paginationTo = paginationFrom + 12;
+export const selectProductList = createSelector(selectProductsFromState, getSorter, (productList, sorter) => {
+  const paginationFrom = sorter.pageNum * PRODUCTS_PER_PAGE;
+  const paginationTo = paginationFrom + PRODUCTS_PER_PAGE;
 
   return productList
     .map((prod) => prod)
@@ -58,6 +58,10 @@ export const selectSortedProducts = createSelector(selectProductsFromState, getS
     .slice(paginationFrom, paginationTo);
 });
 
-export const selectProductList = createSelector(selectProductsFromState, (products: ProductType[]) => products);
+export const selectTotalPageCount = createSelector(
+  selectProductsFromState,
+  (products: ProductType[]) =>
+    parseInt(`${products.length / PRODUCTS_PER_PAGE}`) + (!!(products.length % PRODUCTS_PER_PAGE) ? 1 : 0)
+);
 
 export default companySlice.reducer;

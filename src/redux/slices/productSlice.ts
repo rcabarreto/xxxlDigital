@@ -28,8 +28,36 @@ export const companySlice = createSlice({
   },
 });
 
-export const selectProducts = (state: RootState) => state.product.list;
+const getSearch = (_: RootState, questionId: number) => questionId;
 
-export const selectProductList = createSelector(selectProducts, (products: ProductType[]) => products);
+const getSorter = (
+  _: RootState,
+  sortBy: 'name' | 'price' | 'eyecatcher',
+  sortDirection: 'asc' | 'desc',
+  pageNum: number
+) => ({
+  sortBy,
+  sortDirection,
+  pageNum,
+});
+
+export const selectProductsFromState = (state: RootState) => state.product.list;
+
+export const selectSortedProducts = createSelector(selectProductsFromState, getSorter, (productList, sorter) => {
+  const paginationFrom = sorter.pageNum * 12;
+  const paginationTo = paginationFrom + 12;
+
+  return productList
+    .map((prod) => prod)
+    .sort((a, b) => {
+      const itemA = (a[sorter.sortBy] || 0).toString().toLowerCase();
+      const itemB = (b[sorter.sortBy] || 0).toString().toLowerCase();
+
+      return sorter.sortDirection === 'asc' ? itemA?.localeCompare(itemB || '') : itemB?.localeCompare(itemA || '');
+    })
+    .slice(paginationFrom, paginationTo);
+});
+
+export const selectProductList = createSelector(selectProductsFromState, (products: ProductType[]) => products);
 
 export default companySlice.reducer;

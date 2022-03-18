@@ -8,7 +8,7 @@ const productsController = {
       next(error);
     });
 
-    await sleep(2000);
+    await sleep(1000);
 
     res.locals.payload = productList;
     next({});

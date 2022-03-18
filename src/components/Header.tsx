@@ -6,7 +6,7 @@ import Logo from '../assets/logo.png';
 const Header: React.FC = () => {
   return (
     <div className="container">
-      <header className="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom">
+      <header className="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 border-bottom">
         <Link to="/" className="d-flex align-items-center col-md-3 mb-2 mb-md-0 text-dark text-decoration-none">
           <img src={Logo} alt="Logo" height={40} className="header-logo" />
         </Link>
@@ -25,7 +25,13 @@ const Header: React.FC = () => {
             data-bs-toggle="dropdown"
             aria-expanded="false"
           >
-            <img src="https://github.com/mdo.png" alt="mdo" width="32" height="32" className="rounded-circle" />
+            <img
+              src="https://avatars.githubusercontent.com/u/2464301?v=4"
+              alt="mdo"
+              width="40"
+              height="40"
+              className="rounded-circle"
+            />
           </a>
         </div>
       </header>

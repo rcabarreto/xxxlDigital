@@ -17,7 +17,7 @@ const PriceLabel: React.FC<Pick<ProductType, 'price'> & { type?: 'regular' | 'ol
   );
 };
 
-const PriceComponent: React.FC<Pick<ProductType, 'price' | 'priceSale' | 'eyecatcher'>> = ({
+const ProductPrice: React.FC<Pick<ProductType, 'price' | 'priceSale' | 'eyecatcher'>> = ({
   price,
   priceSale,
   eyecatcher,
@@ -30,4 +30,4 @@ const PriceComponent: React.FC<Pick<ProductType, 'price' | 'priceSale' | 'eyecat
   );
 };
 
-export default PriceComponent;
+export default ProductPrice;

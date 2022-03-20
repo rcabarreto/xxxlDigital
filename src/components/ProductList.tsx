@@ -15,6 +15,8 @@ const ProductList: React.FC = () => {
     selectProductList(state, sortBy, sortDirection, pageNum)
   );
 
+  React.useEffect(() => window.scrollTo(0, 0), [pageNum]);
+
   return (
     <>
       <div className="row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xxl-4 g-5 mt-0 mb-5">

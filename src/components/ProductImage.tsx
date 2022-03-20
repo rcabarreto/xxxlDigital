@@ -6,7 +6,7 @@ import SaleRibbon from '../assets/sale-red-ribbon.png';
 
 const ProductImage: React.FC<Pick<ProductType, 'id' | 'image' | 'eyecatcher'>> = ({ id, image, eyecatcher }) => {
   return (
-    <LazyLoad height={200}>
+    <LazyLoad height={278} style={{ height: '278px' }}>
       {!!eyecatcher && (
         <img src={SaleRibbon} className="position-absolute top-0 end-0" style={{ width: '8rem' }} alt="On Sale" />
       )}

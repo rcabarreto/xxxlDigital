@@ -7,6 +7,8 @@ const Pagination: React.FC<{
 }> = ({ currentPage, pageCount, changePage }) => {
   const optionArray = Array.from(Array(pageCount).keys());
 
+  if (pageCount <= 1) return null;
+
   return (
     <nav aria-label="Product navigation">
       <ul className="pagination justify-content-center">

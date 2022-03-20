@@ -28,7 +28,7 @@ export const companySlice = createSlice({
   },
 });
 
-const getSearch = (_: RootState, questionId: number) => questionId;
+const getSearchString = (_: RootState, searchStr: string) => searchStr;
 
 const getSearchAndSort = (
   _: RootState,
@@ -49,9 +49,6 @@ export const selectProductList = createSelector(
   selectProductsFromState,
   getSearchAndSort,
   (productList, searchAndSorter) => {
-    const paginationFrom = searchAndSorter.pageNum * PRODUCTS_PER_PAGE;
-    const paginationTo = paginationFrom + PRODUCTS_PER_PAGE;
-
     return productList
       .filter(
         (product) =>
@@ -65,15 +62,8 @@ export const selectProductList = createSelector(
         return searchAndSorter.sortDirection === 'asc'
           ? itemA?.localeCompare(itemB || '')
           : itemB?.localeCompare(itemA || '');
-      })
-      .slice(paginationFrom, paginationTo);
+      });
   }
-);
-
-export const selectTotalPageCount = createSelector(
-  selectProductsFromState,
-  (products: ProductType[]) =>
-    parseInt(`${products.length / PRODUCTS_PER_PAGE}`) + (!!(products.length % PRODUCTS_PER_PAGE) ? 1 : 0)
 );
 
 export default companySlice.reducer;

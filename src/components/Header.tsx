@@ -8,7 +8,7 @@ import Logo from '../assets/logo.png';
 const Header: React.FC = () => {
   const dispatch = useAppDispatch();
   const [searchStr, setSearchStr] = React.useState<string>('');
-  const debouncedSearchTerm = useDebounce(searchStr, 500);
+  const debouncedSearchTerm = useDebounce(searchStr, 400);
 
   React.useEffect(() => {
     dispatch(setSearchString(debouncedSearchTerm));

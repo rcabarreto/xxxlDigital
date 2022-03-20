@@ -53,7 +53,11 @@ export const selectProductList = createSelector(
     const paginationTo = paginationFrom + PRODUCTS_PER_PAGE;
 
     return productList
-      .filter((product) => product.name.toLowerCase().includes(searchAndSorter.searchStr.toLowerCase()))
+      .filter(
+        (product) =>
+          product.name.toLowerCase().includes(searchAndSorter.searchStr.toLowerCase()) ||
+          product.brand.toLowerCase().includes(searchAndSorter.searchStr.toLowerCase())
+      )
       .sort((a, b) => {
         const itemA = (a[searchAndSorter.sortBy] || 0).toString().toLowerCase();
         const itemB = (b[searchAndSorter.sortBy] || 0).toString().toLowerCase();

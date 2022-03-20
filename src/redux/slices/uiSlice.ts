@@ -3,10 +3,12 @@ import { RootState } from '../store';
 
 export interface UiState {
   status: string;
+  searchString: string;
 }
 
 const initialState: UiState = {
   status: 'idle',
+  searchString: '',
 };
 
 export const uiSlice = createSlice({
@@ -15,6 +17,9 @@ export const uiSlice = createSlice({
   reducers: {
     setLoading(state, action: PayloadAction<string>) {
       state.status = action.payload;
+    },
+    setSearchString(state, action: PayloadAction<string>) {
+      state.searchString = action.payload;
     },
   },
   extraReducers: (builder) => {
@@ -29,6 +34,7 @@ export const uiSlice = createSlice({
 });
 
 export const isLoadingData = (state: RootState) => state.ui.status === 'loading';
+export const selectSearchStr = (state: RootState) => state.ui.searchString;
 
-export const { setLoading } = uiSlice.actions;
+export const { setLoading, setSearchString } = uiSlice.actions;
 export default uiSlice.reducer;

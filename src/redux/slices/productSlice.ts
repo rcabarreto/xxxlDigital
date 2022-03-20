@@ -30,12 +30,14 @@ export const companySlice = createSlice({
 
 const getSearch = (_: RootState, questionId: number) => questionId;
 
-const getSorter = (
+const getSearchAndSort = (
   _: RootState,
+  searchStr: string,
   sortBy: 'name' | 'price' | 'eyecatcher',
   sortDirection: 'asc' | 'desc',
   pageNum: number
 ) => ({
+  searchStr,
   sortBy,
   sortDirection,
   pageNum,
@@ -43,20 +45,26 @@ const getSorter = (
 
 export const selectProductsFromState = (state: RootState) => state.product.list;
 
-export const selectProductList = createSelector(selectProductsFromState, getSorter, (productList, sorter) => {
-  const paginationFrom = sorter.pageNum * PRODUCTS_PER_PAGE;
-  const paginationTo = paginationFrom + PRODUCTS_PER_PAGE;
+export const selectProductList = createSelector(
+  selectProductsFromState,
+  getSearchAndSort,
+  (productList, searchAndSorter) => {
+    const paginationFrom = searchAndSorter.pageNum * PRODUCTS_PER_PAGE;
+    const paginationTo = paginationFrom + PRODUCTS_PER_PAGE;
 
-  return productList
-    .map((prod) => prod)
-    .sort((a, b) => {
-      const itemA = (a[sorter.sortBy] || 0).toString().toLowerCase();
-      const itemB = (b[sorter.sortBy] || 0).toString().toLowerCase();
+    return productList
+      .filter((product) => product.name.toLowerCase().includes(searchAndSorter.searchStr.toLowerCase()))
+      .sort((a, b) => {
+        const itemA = (a[searchAndSorter.sortBy] || 0).toString().toLowerCase();
+        const itemB = (b[searchAndSorter.sortBy] || 0).toString().toLowerCase();
 
-      return sorter.sortDirection === 'asc' ? itemA?.localeCompare(itemB || '') : itemB?.localeCompare(itemA || '');
-    })
-    .slice(paginationFrom, paginationTo);
-});
+        return searchAndSorter.sortDirection === 'asc'
+          ? itemA?.localeCompare(itemB || '')
+          : itemB?.localeCompare(itemA || '');
+      })
+      .slice(paginationFrom, paginationTo);
+  }
+);
 
 export const selectTotalPageCount = createSelector(
   selectProductsFromState,

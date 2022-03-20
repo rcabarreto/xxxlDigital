@@ -1,9 +1,19 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-
+import { useAppDispatch } from '../hooks';
+import useDebounce from '../hooks/useDebounce';
+import { setSearchString } from '../redux/slices/uiSlice';
 import Logo from '../assets/logo.png';
 
 const Header: React.FC = () => {
+  const dispatch = useAppDispatch();
+  const [searchStr, setSearchStr] = React.useState<string>('');
+  const debouncedSearchTerm = useDebounce(searchStr, 500);
+
+  React.useEffect(() => {
+    dispatch(setSearchString(debouncedSearchTerm));
+  }, [debouncedSearchTerm]);
+
   return (
     <div className="container">
       <header className="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 border-bottom">
@@ -13,7 +23,14 @@ const Header: React.FC = () => {
 
         <div className="d-flex col-12 col-md-6 mb-2 justify-content-center mb-md-0">
           <form className="w-100">
-            <input type="search" className="form-control w" placeholder="Search..." aria-label="Search" />
+            <input
+              type="search"
+              value={searchStr}
+              onChange={(evt) => setSearchStr(evt.target.value)}
+              className="form-control w"
+              placeholder="Search..."
+              aria-label="Search"
+            />
           </form>
         </div>
 

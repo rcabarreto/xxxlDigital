@@ -3,6 +3,7 @@ import ProductTile from './ProductTile';
 import Pagination from './Pagination';
 import { useAppSelector } from '../hooks';
 import { ProductType } from '../types';
+import { selectSearchStr } from '../redux/slices/uiSlice';
 import { selectProductList, selectTotalPageCount } from '../redux/slices/productSlice';
 
 const ProductList: React.FC = () => {
@@ -11,8 +12,9 @@ const ProductList: React.FC = () => {
   const [pageNum, setPageNum] = React.useState<number>(0);
 
   const pageCount: number = useAppSelector(selectTotalPageCount);
+  const productSearch: string = useAppSelector(selectSearchStr);
   const productList: ProductType[] = useAppSelector((state) =>
-    selectProductList(state, sortBy, sortDirection, pageNum)
+    selectProductList(state, productSearch, sortBy, sortDirection, pageNum)
   );
 
   React.useEffect(() => window.scrollTo(0, 0), [pageNum]);

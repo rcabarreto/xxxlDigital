@@ -2,7 +2,6 @@ import { createAsyncThunk, createSlice, createSelector } from '@reduxjs/toolkit'
 import Api from '../../services/api';
 import { RootState } from '../store';
 import { ProductType } from '../../types';
-import { PRODUCTS_PER_PAGE } from '../../constants';
 export interface companyState {
   list: ProductType[];
 }
@@ -27,8 +26,6 @@ export const companySlice = createSlice({
     });
   },
 });
-
-const getSearchString = (_: RootState, searchStr: string) => searchStr;
 
 const getSearchAndSort = (
   _: RootState,
@@ -56,8 +53,16 @@ export const selectProductList = createSelector(
           product.brand.toLowerCase().includes(searchAndSorter.searchStr.toLowerCase())
       )
       .sort((a, b) => {
-        const itemA = (a[searchAndSorter.sortBy] || 0).toString().toLowerCase();
-        const itemB = (b[searchAndSorter.sortBy] || 0).toString().toLowerCase();
+        const itemA = (
+          a[searchAndSorter.sortBy === 'price' && !!a.eyecatcher ? 'priceSale' : searchAndSorter.sortBy] || 0
+        )
+          .toString()
+          .toLowerCase();
+        const itemB = (
+          b[searchAndSorter.sortBy === 'price' && !!b.eyecatcher ? 'priceSale' : searchAndSorter.sortBy] || 0
+        )
+          .toString()
+          .toLowerCase();
 
         return searchAndSorter.sortDirection === 'asc'
           ? itemA?.localeCompare(itemB || '')

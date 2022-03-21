@@ -56,3 +56,8 @@
   background-color: rgb(235, 49, 49);
   border-color: rgb(235, 49, 49);
 }
+
+.row > * {
+  margin-top: 0;
+  margin-bottom: var(--bs-gutter-y);
+}

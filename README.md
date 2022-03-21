@@ -1,34 +1,65 @@
+# XXXLDigital Coding Challenge
+
+Thanks for the opportunity of working on this assignment. Here you'll find some information on the project as well as ideas on how to improve it if more time was available.
+
+## The Solution
+
+The project consists of a single page application that shows a list of products. The application loads the data from the server and displays it according to search parameters and filters.
+
+### The Stack
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app), using the [Redux](https://redux.js.org/) and [Redux Toolkit](https://redux-toolkit.js.org/) template.
+
+This project also includes:
+
+- 🔐 **TypeScript** — For Type checking
+- 💅 **Bootstrap** — Styles
+- 🧭 **React Router** — For routing
+- 💖 **ESlint** — For linting
+
+I also created a small Backend application using Node and Express to serve data to the Client application.
 
 ## Available Scripts
 
 In the project directory, you can run:
 
-### `npm start`
+### `yarn install`
 
-This command runs both the backend and the frontend at the same time. Use this for development.
+and afterwards, run one of the commands below.
 
-After startup, go to localhost:3000 to see the app.
+### `yarn start`
 
-### `npm start:api`
+Runs both the backend and frontend apps in the development mode.<br />
+Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-This command runs the backend part of the project.
+The page will reload if you make edits.<br />
+You will also see any lint errors in the console.
 
-### `npm start:app`
+### `yarn start:api`
 
-This command runs the frontend part.
+Runs just the node backend.
 
-### `npm test`
+### `yarn start:app`
+
+Runs just the React Frontend application
+
+### `yarn test`
 
 Launches the test runner in the interactive watch mode.<br />
 See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-### `npm run build`
+---
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+# List of ideas to improve the project
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+### Backend:
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- Separate the repos.
+- Use a relational database like MySQL to store the data.
+- Translate to TypeScript
+- Add Authentication
+
+### Frontend:
+
+- Do more tests.
+- Check the components for performance improvements.
